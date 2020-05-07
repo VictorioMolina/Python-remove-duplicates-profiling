@@ -1,2 +1,4 @@
 *.o
 .spyproject/
+src/__pycache__/
+
