@@ -6,9 +6,17 @@ This file contains a number of useful functions for removing duplicates.
 @author: VictorioMolina
 '''
 
+import ctypes, os
 from functools import reduce
 import numpy as np
 
+
+# Loading the shared library into ctypes
+LIBREMOVE_DUPLICATES = ctypes.CDLL(
+    os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "../C/libremove_duplicates.so.1")
+    )
+)
 
 def remove_duplicates_1(seq):
     # Not preserving the order
@@ -51,6 +59,34 @@ def remove_duplicates_7(seq):
     indexes = sorted(np.unique(seq, return_index=True)[1])
     return [seq[i] for i in indexes]
 
-def remove_duplicates_8(seq):
-    # TODO - Python Wrapper for calling the C function
-    pass
+
+# Python Wrapper for calling the C function
+def remove_duplicates_8(seq):    
+    # Object corresponding to the function within the library
+    func_remove_duplicates = LIBREMOVE_DUPLICATES.remove_duplicates
+    
+    # Function protoype
+    func_remove_duplicates.argtypes = [
+        ctypes.POINTER(ctypes.c_uint),
+        ctypes.POINTER(ctypes.c_uint),
+        ctypes.c_uint
+    ]
+    
+    # This function returns void
+    func_remove_duplicates.restype = None
+
+    # Variable in which we will collect the result of the function.   
+    result = (ctypes.c_uint * len(seq))()
+    
+    # Call to the shared library function.
+    func_remove_duplicates((ctypes.c_uint * len(seq))(*seq), result, len(seq))
+    
+    # Preparing the vector resulting from the Python function
+    vout=seq.copy()
+    
+    # Copying to this vector the result of the function
+    for i in range(len(vout)):
+        vout[i] = result[i]
+    
+    # Finally, we return the output vector
+    return vout

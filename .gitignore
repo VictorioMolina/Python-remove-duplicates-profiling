@@ -1,4 +1,6 @@
 *.o
+*.so.1
+*.so.1.0.1
 .spyproject/
 src/__pycache__/
 
