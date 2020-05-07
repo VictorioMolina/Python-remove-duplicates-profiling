@@ -17,7 +17,7 @@ void remove_duplicates(const unsigned int *vin, unsigned int *vout, const unsign
     unsigned int arr[size];
     for(int i = 0; i < size; i++)
     {
-        arr[i] = vim[i];
+        arr[i] = vin[i];
     }
     
     // Sorting the array with the heap-sort algorithm
@@ -25,7 +25,7 @@ void remove_duplicates(const unsigned int *vin, unsigned int *vout, const unsign
     
     int i = 0;
     int j = 0;
-    while (i < n)
+    while (i < size)
     {
         // Insert element to the result vector
         vout[j] = vin[i];
@@ -59,7 +59,7 @@ void heap_sort(unsigned int arr[], const unsigned int size)
         
     for (unsigned int i = size - 1; i > 0; i--) 
     { 
-        swap(arr[0], arr[i]); 
+        swap_nodes(arr[0], arr[i]); 
         create_max_heap(arr, i, 0);
     } 
 }
