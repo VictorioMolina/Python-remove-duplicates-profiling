@@ -16,8 +16,8 @@ def remove_duplicates_1(seq):
 
 def remove_duplicates_2(seq):
     # Preserving the order
-    seen = set()
-    return [x for x in seq if not (x in seen or seen.add(x))]
+    found = set()
+    return [x for x in seq if not (x in found or found.add(x))]
 
 def remove_duplicates_3(seq):
     # Not preserving the order
