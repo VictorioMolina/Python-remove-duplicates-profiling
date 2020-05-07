@@ -28,10 +28,10 @@ void remove_duplicates(const unsigned int *vin, unsigned int *vout, const unsign
     while (i < size)
     {
         // Insert element to the result vector
-        vout[j] = vin[i];
+        vout[j] = arr[i];
         j = j + 1;
         
-        while (vin[i] == vin[i + 1])
+        while (arr[i] == arr[i + 1])
         {
             i = i + 1;
         }  
