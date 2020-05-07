@@ -59,7 +59,6 @@ def remove_duplicates_7(seq):
     indexes = sorted(np.unique(seq, return_index=True)[1])
     return [seq[i] for i in indexes]
 
-
 # Python Wrapper for calling the C function
 def remove_duplicates_8(seq):    
     # Object corresponding to the function within the library
@@ -81,12 +80,12 @@ def remove_duplicates_8(seq):
     # Call to the shared library function.
     func_remove_duplicates((ctypes.c_uint * len(seq))(*seq), result, len(seq))
     
-    # Preparing the vector resulting from the Python function
-    vout=seq.copy()
-    
-    # Copying to this vector the result of the function
-    for i in range(len(vout)):
-        vout[i] = result[i]
-    
+    # Copying result of the function to another vector
+    vout=[*result]  # This type of copy is the 'fastest' in Python
+        
+    # Removing all zeros least the first one
+    while len(vout) > 1 and vout[-1] == 0:
+        vout.pop()
+        
     # Finally, we return the output vector
     return vout
