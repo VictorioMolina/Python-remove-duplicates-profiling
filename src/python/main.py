@@ -8,7 +8,7 @@ Created on Thu May  7 01:40:07 2020
 '''
 
 import sys
-import numpy as np
+import utils
 import matplotlib.pyplot as plt
 
 
@@ -17,6 +17,6 @@ def main():
     if len(sys.argv) != 4:
         print("Usage: {} infile outfile pdf_outfile".format(sys.argv[0]))
         sys.exit(0)
-
+        
 if __name__ == '__main__':
     main()
