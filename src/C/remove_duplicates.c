@@ -59,7 +59,7 @@ void heap_sort(unsigned int arr[], const unsigned int size)
         
     for (unsigned int i = size - 1; i > 0; i--) 
     { 
-        swap_nodes(&arr[0], &arr[i]); 
+        swap_nodes(arr[0], arr[i]); 
         create_max_heap(arr, i, 0);
     } 
 }
@@ -86,7 +86,7 @@ void create_max_heap(unsigned int arr[], const unsigned int size, unsigned int r
     // If the root has changed
     if (root != root_index)
     {
-        swap_nodes(&arr[root], &arr[root_index]);
+        swap_nodes(arr[root], arr[root_index]);
         
         // Continue resolving the new tree
         create_max_heap(arr,  size, root);
