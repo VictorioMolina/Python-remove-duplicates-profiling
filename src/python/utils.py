@@ -18,7 +18,6 @@ LIBREMOVE_DUPLICATES = ctypes.CDLL(
     )
 )
 
-
 def remove_duplicates_1(seq):
     # Not preserving the order
     return list(set(seq))
