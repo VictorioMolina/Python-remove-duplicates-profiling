@@ -35,32 +35,16 @@ def remove_duplicates_3(seq):
     return list(keys.keys())
 
 def remove_duplicates_4(seq):
-   # Preserving the order
-   def uniquefy_list(seq):
-       found = []
-       for x in seq:
-           if x in found:
-               continue    
-           found.append(x)
-           yield x
-               
-   return list(uniquefy_list(seq))
-
-def remove_duplicates_5(seq):
-    # Preserving the order and using functools.reduce() with a lambda
-    return reduce(lambda l, x: l.append(x) or l if not x in l else l, seq, [])
-
-def remove_duplicates_6(seq):
     # Not preserving the order and using NumPy
     return list(np.unique(seq))
 
-def remove_duplicates_7(seq):
+def remove_duplicates_5(seq):
     # Preserving the order and using NumPy
     indexes = sorted(np.unique(seq, return_index=True)[1])
     return [seq[i] for i in indexes]
 
 # Python Wrapper for calling the C function
-def remove_duplicates_8(seq):    
+def remove_duplicates_6(seq):    
     # Object corresponding to the function within the library
     func_remove_duplicates = LIBREMOVE_DUPLICATES.remove_duplicates
     
