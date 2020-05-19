@@ -46,7 +46,6 @@ def result_to_file(result, path):
         print("The file {} already exists".format(sys.argv[2]))
         sys.exit(-1)
     else:
-        # Salvar en un fichero de texto con la «cabecera» dada:
         for element in result:
             outfile.write(str(element) + '\n')
         outfile.close()
