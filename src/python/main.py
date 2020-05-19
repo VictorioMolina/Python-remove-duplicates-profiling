@@ -55,8 +55,7 @@ def result_to_file(result, path):
 def generate_plots(title, x, y, pdf):
     fig = plt.figure(figsize=(14, 19.8)) # A4 Size
 
-    hfont = {'fontname':'Helvetica'}
-    fig.suptitle(title, fontsize=30, **hfont)
+    fig.suptitle(title, fontsize=30)
 
     spec = gridspec.GridSpec(ncols=3, nrows=2, width_ratios=[0.5,4,0.5])
 
